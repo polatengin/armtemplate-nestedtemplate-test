@@ -1,16 +1,18 @@
-$resourceGroup = "test2019"
-$functionAppName = "functest20190725"
-$count = 10
+$resourceGroup = Read-Host -Prompt "Please enter Resource Group Name"
+$functionAppName = Read-Host -Prompt "Please enter the beginning of the Azure Functions names"
+$count = Read-Host -Prompt "Please enter how many Azure Function you want"
 
 az group create -l northeurope -n $resourceGroup
 
-az group deployment create --resource-group $resourceGroup --template-file master.json --parameters functionName=$functionAppName count=$count
+az group deployment create --resource-group $resourceGroup --template-file master.json --parameters functionName=$functionAppName functionCount=$count
 
 cd appcode
 
 dotnet publish -c Release -o publish
 
 $publishZip = "publish.zip"
+
+if (Test-path ../$publishZip) { Remove-item ../$publishZip }
 
 Add-Type -assembly "system.io.compression.filesystem"
 
