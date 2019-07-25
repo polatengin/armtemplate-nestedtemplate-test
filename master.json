@@ -1,0 +1,39 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "resources": [
+        {
+            "apiVersion": "2017-05-10",
+            "name": "first",
+            "type": "Microsoft.Resources/deployments",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                "uri":"[variables('appinsights-TemplateUrl')]",
+                "contentVersion":"1.0.0.0"
+                },
+                "parameters": {
+                    "envInstanceName":{"value": "[variables('envInstanceName')]"},
+                    "location":{"value": "[parameters('location')]"}
+                }
+            }
+        },
+        {
+            "apiVersion": "2017-05-10",
+            "name": "second",
+            "type": "Microsoft.Resources/deployments",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                "uri":"[variables('keyvault-TemplateUrl')]",
+                "contentVersion":"1.0.0.0"
+                },
+                "parameters": {
+                    "envInstanceName":{"value": "[variables('envInstanceName')]"},
+                    "location":{"value": "[parameters('location')]"},
+                    "spObjectId":{"value": "[parameters('spObjectId')]"}
+                }
+            }
+        }
+    ]
+}

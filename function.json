@@ -1,0 +1,40 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "sites_func4munichre_name": {
+            "defaultValue": "functest201907",
+            "type": "String"
+        },
+        "serverfarms_WestEuropePlan_externalid": {
+            "defaultValue": "[resourceId('Microsoft.Web/serverfarms', 'test4munichreserverfarm')]",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Web/sites",
+            "apiVersion": "2016-08-01",
+            "copy": {
+                "name": "copytest",
+                "count": 10
+            },
+            "name": "[concat(parameters('sites_func4munichre_name'), copyIndex(1))]",
+            "location": "West Europe",
+            "kind": "functionapp",
+            "properties": {
+                "enabled": true,
+                "serverFarmId": "[parameters('serverfarms_WestEuropePlan_externalid')]",
+                "reserved": false,
+                "scmSiteAlsoStopped": false,
+                "clientAffinityEnabled": false,
+                "clientCertEnabled": false,
+                "hostNamesDisabled": false,
+                "containerSize": 1536,
+                "dailyMemoryTimeQuota": 0,
+                "httpsOnly": false
+            }
+        }
+    ]
+}
