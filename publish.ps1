@@ -12,7 +12,6 @@ dotnet publish -c Release
 $publishFolder = "./appcode/bin/Release/netcoreapp2.2/publish"
 
 $publishZip = "publish.zip"
-if (Test-path $publishZip) { Remove-item $publishZip }
 
 Add-Type -assembly "system.io.compression.filesystem"
 
@@ -20,7 +19,8 @@ Add-Type -assembly "system.io.compression.filesystem"
 
 cd ..
 
-For ($i=0; $i -le $count; $i++) {
-    Write-Host $functionAppName$i
+For ($i=1; $i -le $count; $i++) {
     az functionapp deployment source config-zip -g $resourceGroup -n $functionAppName$i --src $publishZip
 }
+
+Remove-item $publishZip
