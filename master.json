@@ -33,10 +33,10 @@
                 "templateLink": {
                 "uri":"https://raw.githubusercontent.com/polatengin/armtemplate-nestedtemplate-test/master/function.json",
                 "contentVersion":"1.0.0.0"
+                },
+                "parameters": {
+                    "serverFarmName": { "value": "[variables('serverFarmName')]" }
                 }
-            },
-            "parameters": {
-                "serverFarmName": { "value": "[variables('serverFarmName')]" }
             }
         }
     ]
