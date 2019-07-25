@@ -8,7 +8,7 @@
         "functionName": {
             "type": "string"
         },
-        "count": {
+        "functionCount": {
             "type": "int"
         }
     },
@@ -18,7 +18,7 @@
             "apiVersion": "2016-08-01",
             "copy": {
                 "name": "copytest",
-                "count": "[parameters('count')]"
+                "count": "[parameters('functionCount')]"
             },
             "name": "[concat(parameters('functionName'), copyIndex(1))]",
             "location": "West Europe",
