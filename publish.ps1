@@ -2,6 +2,8 @@ $resourceGroup = "testing"
 $functionAppName = "functest20190725"
 $count = 4
 
+az group create -l northeurope -n $resourceGroup
+
 az group deployment create --resource-group $resourceGroup --template-file master.json --parameters functionName=$functionAppName count=$count
 
 cd appcode
