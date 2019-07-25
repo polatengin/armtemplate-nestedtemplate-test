@@ -5,9 +5,11 @@
         "serverFarmName": {
             "type": "string"
         },
-        "sites_func4munichre_name": {
-            "defaultValue": "functest201907",
+        "functionName": {
             "type": "string"
+        },
+        "count": {
+            "type": "int"
         }
     },
     "resources": [
@@ -16,16 +18,15 @@
             "apiVersion": "2016-08-01",
             "copy": {
                 "name": "copytest",
-                "count": 20
+                "count": "[parameters('count')]"
             },
-            "name": "[concat(parameters('sites_func4munichre_name'), copyIndex(1))]",
+            "name": "[concat(parameters('functionName'), copyIndex(1))]",
             "location": "West Europe",
             "kind": "functionapp",
             "properties": {
                 "enabled": true,
                 "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('serverFarmName'))]",
                 "reserved": false,
-                "scmSiteAlsoStopped": false,
                 "clientAffinityEnabled": false,
                 "clientCertEnabled": false,
                 "hostNamesDisabled": false,
