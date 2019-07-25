@@ -18,7 +18,7 @@
             "apiVersion": "2016-08-01",
             "copy": {
                 "name": "copytest",
-                "count": 10
+                "count": 20
             },
             "name": "[concat(parameters('sites_func4munichre_name'), copyIndex(1))]",
             "location": "West Europe",
