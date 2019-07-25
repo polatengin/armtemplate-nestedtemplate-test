@@ -16,7 +16,7 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri":"https://raw.githubusercontent.com/polatengin/armtemplate-nestedtemplate-test/master/serverfarm.json",
+                    "uri":"[concat('https://raw.githubusercontent.com/polatengin/armtemplate-nestedtemplate-test/master/serverfarm.json?v', guid(resourceGroup().id, deployment().name))]",
                     "contentVersion":"1.0.0.0"
                 },
                 "parameters": {
@@ -31,10 +31,12 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                "uri":"https://raw.githubusercontent.com/polatengin/armtemplate-nestedtemplate-test/master/function.json",
+                "uri":"[concat('https://raw.githubusercontent.com/polatengin/armtemplate-nestedtemplate-test/master/function.json?v', guid(resourceGroup().id, deployment().name))]",
                 "contentVersion":"1.0.0.0"
                 },
                 "parameters": {
+                    "functionName": { "value": "[parameters('functionName')]" },
+                    "count": { "value": "[parameters('count')]" },
                     "serverFarmName": { "value": "[variables('serverFarmName')]" }
                 }
             }
