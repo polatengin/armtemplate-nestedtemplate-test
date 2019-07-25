@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "functionName": { "type": "string" },
-        "count": { "type": "int" }
+        "functionCount": { "type": "int" }
     },
     "variables": {
         "serverFarmName": "[replace(concat('serverfarm', guid(resourceGroup().id, deployment().name)), '-', '')]"
@@ -11,7 +11,7 @@
     "resources": [
         {
             "apiVersion": "2017-05-10",
-            "name": "first",
+            "name": "serverfarm",
             "type": "Microsoft.Resources/deployments",
             "properties": {
                 "mode": "Incremental",
@@ -26,7 +26,7 @@
         },
         {
             "apiVersion": "2017-05-10",
-            "name": "second",
+            "name": "functions",
             "type": "Microsoft.Resources/deployments",
             "properties": {
                 "mode": "Incremental",
@@ -36,12 +36,12 @@
                 },
                 "parameters": {
                     "functionName": { "value": "[parameters('functionName')]" },
-                    "count": { "value": "[parameters('count')]" },
+                    "functionCount": { "value": "[parameters('functionCount')]" },
                     "serverFarmName": { "value": "[variables('serverFarmName')]" }
                 }
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Resources/deployments', 'first')]"
+                "[resourceId('Microsoft.Resources/deployments', 'serverfarm')]"
             ]
         }
     ]
