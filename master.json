@@ -39,7 +39,10 @@
                     "count": { "value": "[parameters('count')]" },
                     "serverFarmName": { "value": "[variables('serverFarmName')]" }
                 }
-            }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Resources/deployments', 'first')]"
+            ]
         }
     ]
 }
