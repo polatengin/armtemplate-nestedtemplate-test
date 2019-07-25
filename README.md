@@ -1,6 +1,6 @@
-# armtemplate-nestedtemplate-test
+# armtemplate-with-nestedtemplates
 
-This repo is for Testing for ARM Nested Templates
+This repo is for Testing ARM Nested Templates
 
 After cloning the repo you just need to invoke `publish.ps1` *PowerShell script* just like below;
 
