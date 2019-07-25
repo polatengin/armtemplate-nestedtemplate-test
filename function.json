@@ -10,7 +10,6 @@
             "type": "string"
         }
     },
-    "variables": {},
     "resources": [
         {
             "type": "Microsoft.Web/sites",
@@ -24,7 +23,7 @@
             "kind": "functionapp",
             "properties": {
                 "enabled": true,
-                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('serverFarmName')]",
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('serverFarmName'))]",
                 "reserved": false,
                 "scmSiteAlsoStopped": false,
                 "clientAffinityEnabled": false,
