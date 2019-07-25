@@ -1,6 +1,6 @@
-$resourceGroup = "testing"
+$resourceGroup = "test2019"
 $functionAppName = "functest20190725"
-$count = 4
+$count = 20
 
 az group create -l northeurope -n $resourceGroup
 
@@ -9,7 +9,7 @@ az group deployment create --resource-group $resourceGroup --template-file maste
 cd appcode
 
 dotnet publish -c Release
-$publishFolder = "./appcode/bin/Release/netcoreapp2.1/publish"
+$publishFolder = "./appcode/bin/Release/netcoreapp2.2/publish"
 
 $publishZip = "publish.zip"
 if (Test-path $publishZip) { Remove-item $publishZip }
@@ -18,4 +18,9 @@ Add-Type -assembly "system.io.compression.filesystem"
 
 [io.compression.zipfile]::CreateFromDirectory($publishFolder, $publishZip)
 
-az functionapp deployment source config-zip -g $resourceGroup -n $functionAppName --src $publishZip
+cd ..
+
+For ($i=0; $i -le $count; $i++) {
+    Write-Host $functionAppName$i
+    az functionapp deployment source config-zip -g $resourceGroup -n $functionAppName$i --src $publishZip
+}
