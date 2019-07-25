@@ -9,12 +9,8 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                "uri":"[variables('appinsights-TemplateUrl')]",
+                "uri":"https://raw.githubusercontent.com/polatengin/armtemplate-nestedtemplate-test/master/serverfarm.json",
                 "contentVersion":"1.0.0.0"
-                },
-                "parameters": {
-                    "envInstanceName":{"value": "[variables('envInstanceName')]"},
-                    "location":{"value": "[parameters('location')]"}
                 }
             }
         },
@@ -25,13 +21,8 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                "uri":"[variables('keyvault-TemplateUrl')]",
+                "uri":"https://raw.githubusercontent.com/polatengin/armtemplate-nestedtemplate-test/master/function.json",
                 "contentVersion":"1.0.0.0"
-                },
-                "parameters": {
-                    "envInstanceName":{"value": "[variables('envInstanceName')]"},
-                    "location":{"value": "[parameters('location')]"},
-                    "spObjectId":{"value": "[parameters('spObjectId')]"}
                 }
             }
         }
