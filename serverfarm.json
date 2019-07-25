@@ -10,7 +10,7 @@
         {
             "type": "Microsoft.Web/serverfarms",
             "apiVersion": "2016-09-01",
-            "name": "[variables('serverFarmName')]",
+            "name": "[parameters('serverFarmName')]",
             "location": "West Europe",
             "sku": {
                 "name": "Y1",
@@ -21,7 +21,7 @@
             },
             "kind": "functionapp",
             "properties": {
-                "name": "[variables('serverFarmName')]",
+                "name": "[parameters('serverFarmName')]",
                 "perSiteScaling": false,
                 "reserved": false,
                 "targetWorkerCount": 0,
