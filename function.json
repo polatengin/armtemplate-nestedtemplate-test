@@ -7,7 +7,7 @@
         },
         "sites_func4munichre_name": {
             "defaultValue": "functest201907",
-            "type": "String"
+            "type": "string"
         }
     },
     "variables": {},
