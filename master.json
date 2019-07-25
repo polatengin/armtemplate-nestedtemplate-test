@@ -1,6 +1,9 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
+    "variables": {
+        "serverFarmName": "[replace(concat('serverfarm', guid(resourceGroup().id, deployment().name)), '-', '')]"
+    },
     "resources": [
         {
             "apiVersion": "2017-05-10",
@@ -9,8 +12,11 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                "uri":"https://raw.githubusercontent.com/polatengin/armtemplate-nestedtemplate-test/master/serverfarm.json",
-                "contentVersion":"1.0.0.0"
+                    "uri":"https://raw.githubusercontent.com/polatengin/armtemplate-nestedtemplate-test/master/serverfarm.json",
+                    "contentVersion":"1.0.0.0"
+                },
+                "parameters": {
+                    "serverFarmName": { "value": "[variables('serverFarmName')]" }
                 }
             }
         },

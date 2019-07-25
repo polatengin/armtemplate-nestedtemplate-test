@@ -7,7 +7,7 @@
             "type": "String"
         },
         "serverfarms_WestEuropePlan_externalid": {
-            "defaultValue": "[resourceId('Microsoft.Web/serverfarms', 'test4munichreserverfarm')]",
+            "defaultValue": "[resourceId('Microsoft.Web/serverfarms', 'serverfarm')]",
             "type": "String"
         }
     },
