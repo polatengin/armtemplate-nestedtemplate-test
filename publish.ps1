@@ -1,6 +1,6 @@
 $resourceGroup = "test2019"
 $functionAppName = "functest20190725"
-$count = 20
+$count = 10
 
 az group create -l northeurope -n $resourceGroup
 
@@ -8,14 +8,13 @@ az group deployment create --resource-group $resourceGroup --template-file maste
 
 cd appcode
 
-dotnet publish -c Release
-$publishFolder = "./appcode/bin/Release/netcoreapp2.2/publish"
+dotnet publish -c Release -o publish
 
 $publishZip = "publish.zip"
 
 Add-Type -assembly "system.io.compression.filesystem"
 
-[io.compression.zipfile]::CreateFromDirectory($publishFolder, $publishZip)
+[io.compression.zipfile]::CreateFromDirectory("appcode/publish", $publishZip)
 
 cd ..
 
